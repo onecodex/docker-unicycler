@@ -50,14 +50,14 @@ RUN git clone --recursive https://github.com/isovic/racon.git racon \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make \
  && make install \
- && cd .. \
+ && cd ../../ \
  && rm -r racon*
 
 # Install samtools
 
 RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.7/samtools-1.7.tar.bz2" \
  && tar -xjvf samtools-1.7.tar.bz2 \
- && /home/unicycler/samtools-1.7 \
+ && cd /home/unicycler/samtools-1.7 \
  && ./configure --prefix=/usr/local --without-curses \
  && make \
  && make install \
@@ -83,11 +83,11 @@ RUN git clone https://github.com/rrwick/Unicycler.git \
 
 # Install Pilon
 
+ADD pilon /usr/local/bin/pilon
+
 RUN wget --quiet "https://github.com/broadinstitute/pilon/releases/download/v1.22/pilon-1.22.jar" \
  && mkdir /usr/local/Unicycler \
- && mv pilon-1.22.jar /usr/local/Unicycler/ \
- && pilon /usr/local/bin/pilon \
- && chmod +x /usr/local/bin/pilon
+ && mv pilon-1.22.jar /usr/local/Unicycler/
 
 # Make a runnable container
 
