@@ -85,6 +85,7 @@ RUN git clone https://github.com/rrwick/Unicycler.git \
 # Install Pilon
 
 ADD pilon /usr/local/bin/pilon
+RUN chmod +x /usr/local/bin/pilon
 
 RUN wget --quiet "https://github.com/broadinstitute/pilon/releases/download/v1.22/pilon-1.22.jar" \
  && mkdir /usr/local/Unicycler \
