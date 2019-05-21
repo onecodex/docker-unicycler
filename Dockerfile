@@ -77,7 +77,7 @@ RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.
 
 RUN git clone https://github.com/rrwick/Unicycler.git \
  && cd /home/unicycler/Unicycler \
- && git checkout v0.4.7 \
+ && git checkout ea9f1dc \
  && python3 setup.py install \
  && cd .. \
  && rm -rf /home/unicycler/Unicycler
