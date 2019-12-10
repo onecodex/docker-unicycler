@@ -35,12 +35,12 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 \
 
 # Install SPAdes
 
-RUN wget --quiet "http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0.tar.gz" \
- && tar -xzvf SPAdes-3.12.0.tar.gz \
- && cd SPAdes-3.12.0/ \
+RUN wget --quiet "https://github.com/ablab/spades/releases/download/v3.13.1/SPAdes-3.13.1.tar.gz" \
+ && tar -xzvf SPAdes-3.14.1.tar.gz \
+ && cd SPAdes-3.14.1/ \
  && PREFIX=/usr/local/ ./spades_compile.sh \
  && cd .. \
- && rm -rf SPAdes-3.12.0
+ && rm -rf SPAdes-3.14.1
 
 # Install racon
 # (note: CPU-architecture dependent)
