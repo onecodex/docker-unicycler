@@ -35,23 +35,28 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8 \
 
 # Install SPAdes
 
-RUN wget --quiet "http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0.tar.gz" \
- && tar -xzvf SPAdes-3.12.0.tar.gz \
- && cd SPAdes-3.12.0/ \
+RUN wget --quiet "https://github.com/ablab/spades/releases/download/v3.13.1/SPAdes-3.13.1.tar.gz" \
+ && tar -xzvf SPAdes-3.13.1.tar.gz \
+ && cd SPAdes-3.13.1/ \
  && PREFIX=/usr/local/ ./spades_compile.sh \
  && cd .. \
- && rm -rf SPAdes-3.12.0
+ && rm -rf SPAdes-3.13.1
 
 # Install racon
-
-RUN git clone --recursive https://github.com/isovic/racon.git racon \
- && mkdir -p /home/unicycler/racon/build \
- && cd /home/unicycler/racon/build \
- && cmake -DCMAKE_BUILD_TYPE=Release .. \
+# (note: CPU-architecture dependent)
+RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/racon-v1.4.10.tar.gz" \
+ && tar -zxvf racon-v1.4.10.tar.gz \
+ && cd racon-v1.4.10 \
+ && mkdir -p build \
+ && cd build \
+ && cmake \
+   -D CMAKE_BUILD_TYPE=Release \
+   -D CMAKE_CXX_FLAGS="-march=haswell -mno-avx512pf -mno-avx512er -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512f" \
+   .. \
  && make \
  && make install \
  && cd ../../ \
- && rm -r racon*
+ && rm -r racon-v1.4.10
 
 # Install samtools
 
@@ -74,10 +79,10 @@ RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.
  && rm -r bowtie2*
 
 # Install Unicycler
-
-RUN git clone https://github.com/rrwick/Unicycler.git \
+# TODO: switch back to official repo once Racon bug is fixed
+RUN git clone https://github.com/onecodex/Unicycler.git \
  && cd /home/unicycler/Unicycler \
- && git checkout v0.4.7 \
+ && git checkout audy-ensure-racon-ran-at-least-once \
  && python3 setup.py install \
  && cd .. \
  && rm -rf /home/unicycler/Unicycler
