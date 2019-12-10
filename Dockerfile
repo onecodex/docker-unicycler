@@ -50,7 +50,7 @@ RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/rac
  && cd build \
  && cmake \
    -D CMAKE_BUILD_TYPE=Release \
-   -D CMAKE_CXX_FLAGS="-march=haswell -mno-avx512pf -mno-avx512er -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512f" \
+   -D CMAKE_CXX_FLAGS="-march=haswell -mno-avx512f -mno-avx512pf -mno-avx512er -mno-avx512cd" \
    .. \
  && make \
  && make install \
