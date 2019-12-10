@@ -82,7 +82,7 @@ RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.
 # TODO: switch back to official repo once Racon bug is fixed
 RUN git clone https://github.com/onecodex/Unicycler.git \
  && cd /home/unicycler/Unicycler \
- && git checkout adr-check-racon-returncode \
+ && git checkout audy-ensure-racon-ran-at-least-once \
  && python3 setup.py install \
  && cd .. \
  && rm -rf /home/unicycler/Unicycler
