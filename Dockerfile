@@ -71,9 +71,9 @@ RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.10/sa
 
 # Install bowtie2
 
-RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.4.1/bowtie2-2.3.4.1-linux-x86_64.zip" \
- && unzip bowtie2-2.3.4.1-linux-x86_64.zip \
- && cd /home/unicycler/bowtie2-2.3.4.1-linux-x86_64 \
+RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.5.1/bowtie2-2.3.5.1-linux-x86_64.zip" \
+ && unzip bowtie2-2.3.5.1-linux-x86_64.zip \
+ && cd /home/unicycler/bowtie2-2.3.5.1-linux-x86_64 \
  && mv bowtie2* /usr/local/bin  \
  && cd .. \
  && rm -r bowtie2*
