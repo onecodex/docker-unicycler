@@ -64,7 +64,7 @@ RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.7/sam
  && tar -xjvf samtools-1.7.tar.bz2 \
  && cd /home/unicycler/samtools-1.7 \
  && ./configure --prefix=/usr/local --without-curses \
- && make \
+ && make -j \
  && make install \
  && cd .. \
  && rm -r samtools-1.7*
