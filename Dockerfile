@@ -43,15 +43,20 @@ RUN wget --quiet "http://cab.spbu.ru/files/release3.12.0/SPAdes-3.12.0.tar.gz" \
  && rm -rf SPAdes-3.12.0
 
 # Install racon
-
-RUN git clone --recursive https://github.com/isovic/racon.git racon \
- && mkdir -p /home/unicycler/racon/build \
- && cd /home/unicycler/racon/build \
- && cmake -DCMAKE_BUILD_TYPE=Release .. \
- && make \
+# (note: CPU-architecture dependent)
+RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/racon-v1.4.10.tar.gz" \
+ && tar -zxvf racon-v1.4.10 \
+ && cd racon-v1.4.10 \
+ && mkdir -p build \
+ && cd build \
+ && cmake \
+   -D CMAKE_BUILD_TYPE=Release \
+   -D CMAKE_CXX_FLAGS="-march=haswell -mno-avx512pf -mno-avx512er -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512f" \
+   .. \
+ && make -j \
  && make install \
  && cd ../../ \
- && rm -r racon*
+ && rm -r racon-v1.4.10
 
 # Install samtools
 
