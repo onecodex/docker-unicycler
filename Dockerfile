@@ -44,7 +44,7 @@ RUN wget --quiet "https://github.com/ablab/spades/releases/download/v3.13.1/SPAd
 # Install racon
 # (note: CPU-architecture dependent)
 RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/racon-v1.4.10.tar.gz" \
- && tar -zxvf racon-v1.4.10.tar.gz \
+ && tar -zxf racon-v1.4.10.tar.gz \
  && cd racon-v1.4.10 \
  && mkdir -p build \
  && cd build \
@@ -60,7 +60,7 @@ RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/rac
 # Install samtools
 
 RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2" \
- && tar -xjvf samtools-1.10.tar.bz2 \
+ && tar -xjf samtools-1.10.tar.bz2 \
  && cd /home/unicycler/samtools-1.10 \
  && ./configure --prefix=/usr/local --without-curses \
  && make \
