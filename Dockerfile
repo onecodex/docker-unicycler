@@ -60,14 +60,14 @@ RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/rac
 
 # Install samtools
 
-RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.7/samtools-1.7.tar.bz2" \
- && tar -xjvf samtools-1.7.tar.bz2 \
- && cd /home/unicycler/samtools-1.7 \
+RUN wget --quiet "https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2" \
+ && tar -xjvf samtools-1.10.tar.bz2 \
+ && cd /home/unicycler/samtools-1.10 \
  && ./configure --prefix=/usr/local --without-curses \
  && make \
  && make install \
  && cd .. \
- && rm -r samtools-1.7*
+ && rm -r samtools-1.10*
 
 # Install bowtie2
 
