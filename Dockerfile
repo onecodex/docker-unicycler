@@ -1,4 +1,4 @@
-FROM quay.io/aptible/ubuntu:16.04
+FROM quay.io/aptible/ubuntu:19.04
 
 MAINTAINER Christopher Smith <christopher@onecodex.com>
 
@@ -27,6 +27,7 @@ RUN apt-get update \
   unzip \
   wget --quiet \
   zlib1g-dev \
+  racon \
   && apt-get clean
 
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8 \
@@ -40,22 +41,6 @@ RUN wget --quiet "https://github.com/ablab/spades/releases/download/v3.13.1/SPAd
   && ls SPAdes-3.13.1-Linux \
   && mv SPAdes-3.13.1-Linux/bin/* /usr/local/bin/ \
   && mv SPAdes-3.13.1-Linux/share/* /usr/local/share/
-
-# Install racon
-# (note: CPU-architecture dependent)
-RUN wget --quiet "https://github.com/lbcb-sci/racon/releases/download/1.4.10/racon-v1.4.10.tar.gz" \
- && tar -zxf racon-v1.4.10.tar.gz \
- && cd racon-v1.4.10 \
- && mkdir -p build \
- && cd build \
- && cmake \
-   -D CMAKE_BUILD_TYPE=Release \
-   -D CMAKE_CXX_FLAGS="-march=haswell -mno-avx512f -mno-avx512pf -mno-avx512er -mno-avx512cd" \
-   .. \
- && make \
- && make install \
- && cd ../../ \
- && rm -r racon-v1.4.10
 
 # Install samtools
 
@@ -77,7 +62,7 @@ RUN wget --quiet "https://github.com/BenLangmead/bowtie2/releases/download/v2.3.
  && cd .. \
  && rm -r bowtie2*
 
-# Install Unicycler
+# Install Unicycler (this actually installs 4.8)
 # TODO: switch back to official repo once Racon bug is fixed
 RUN git clone https://github.com/onecodex/Unicycler.git \
  && cd /home/unicycler/Unicycler \
