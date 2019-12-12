@@ -1,4 +1,4 @@
-FROM quay.io/aptible/ubuntu:19.04
+FROM ubuntu:19.04
 
 MAINTAINER Christopher Smith <christopher@onecodex.com>
 
