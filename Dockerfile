@@ -40,7 +40,8 @@ RUN wget --quiet "https://github.com/ablab/spades/releases/download/v3.13.1/SPAd
   && tar -zxf SPAdes-3.13.1-Linux.tar.gz \
   && ls SPAdes-3.13.1-Linux \
   && mv SPAdes-3.13.1-Linux/bin/* /usr/local/bin/ \
-  && mv SPAdes-3.13.1-Linux/share/* /usr/local/share/
+  && mv SPAdes-3.13.1-Linux/share/* /usr/local/share/ \
+  && rm -rf SPAdes-3.13.1-Linux/
 
 # Install samtools
 
